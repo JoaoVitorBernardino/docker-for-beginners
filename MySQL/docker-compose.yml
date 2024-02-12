@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: mysql_db
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - mynet2
+
+volumes:
+  mysql_data:
+
+networks:
+  mynet2:
+    driver: bridge
