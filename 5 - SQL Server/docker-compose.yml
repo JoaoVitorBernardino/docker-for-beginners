@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: sqlserver_db
+    build: 
+      context: .
+      dockerfile: Dockerfile.sqlserver
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: Admin123#
+    ports:
+      - "1455:1433"
+    networks:
+      - mynet5
+
+networks:
+  mynet5:
+    driver: bridge
