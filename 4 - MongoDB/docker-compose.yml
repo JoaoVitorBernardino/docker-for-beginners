@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: mongo_db
+    build:
+      context: .
+      dockerfile: Dockerfile.mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 12345678
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mynet4
+  
+  mongo-express:
+    image: mongo-express 
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 12345678
+      ME_CONFIG_MONGODB_URL: mongodb://admin:12345678@database:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: mongo
+      ME_CONFIG_BASICAUTH_PASSWORD: 123456
+    depends_on:
+      - database
+    ports:
+      - "8081:8081"
+    networks:
+      - mynet4
+
+volumes:
+  mongo_data:
+  
+networks:
+  mynet4:
+    driver: bridge
