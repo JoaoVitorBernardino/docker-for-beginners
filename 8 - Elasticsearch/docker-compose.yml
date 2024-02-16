@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    build:
+      context: .
+      dockerfile: Dockerfile.elastic
+    container_name: Elasticsearch
+    environment:
+      discovery.type: "single-node"
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+    ports:
+      - "9200:9200"
+    networks:
+      - mynet8
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.1
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    networks:
+      - mynet8
+
+networks:
+  mynet8:
+    driver: bridge
