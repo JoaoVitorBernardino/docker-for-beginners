@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  database:
+    image: container-registry.oracle.com/database/free:latest
+    container_name: oracle
+    environment:
+      ORACLE_PWD: 12345678
+    ports:
+      - "1521:1521"
+    volumes:
+      - "oracle_data:/opt/oracle/oradata"
+    networks:
+      - mynet9
+
+volumes:
+  oracle_data:
+
+networks:
+  mynet9:
+    driver: bridge
