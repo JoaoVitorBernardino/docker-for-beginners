@@ -1,4 +1,4 @@
-# docker-for-beginners
+# Docker for Beginners
 
-O objetivo desse repositório é ensinar a configurar os bancos de dados mais populares segundo a 
-pesquisa do StackOverflow no Docker. Para ajudar pessoas que estão começando a usar o Docker.
+Este repositório é um recurso introdutório para aqueles que desejam aprender como criar diferentes bancos de dados utilizando Docker. 
+Ele oferece exemplos simples e práticos usando Dockerfile e Docker Compose, baseados nas escolhas populares identificadas pela pesquisa do [Stack Overflow](https://survey.stackoverflow.co/2023/#technology) de 2023.
